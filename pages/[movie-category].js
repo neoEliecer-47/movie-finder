@@ -1,10 +1,11 @@
-import React from 'react'
 
-export function getStaticPaths(){
-    let paths = []
+
+export async function getStaticPaths(){
+  const categoryOne = "horror"  
+  const paths = []
     
         paths.push({
-          params: { category: "horror" },
+          params: { category: categoryOne },
         });
      
     
@@ -14,16 +15,18 @@ export function getStaticPaths(){
       };
 }
 
-export function getStaticProps({ params }){
-    return { props: { params } };
+export async function getStaticProps({ params }){
+  console.log("PARAMS:", params)  
+  return { props: { category: params.category }, revalidate: 60 };
 }
 
 
-const CategoryPage = ({ props }) => {
-console.log(props)
+const CategoryPage = ({ category }) => {
+  //onsole.log("PROPS:", props?.params)
+  console.log(category)  
 
   return (
-    <div>{props}</div>
+    <div>page 1</div>
   )
 }
 
