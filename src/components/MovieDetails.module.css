@@ -1,0 +1,28 @@
+.container {
+  overflow-x: hidden;
+  height: 10rem;
+}
+
+.swiper {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow: scroll;
+  scroll-behavior: smooth;
+  scrollbar-color: transparent;
+}
+
+.metaDataBar {
+  /* display: flex;
+    flex-direction: column;
+    grid-gap: 5px;
+    padding: 1rem;
+    margin: 1rem 0 1rem;
+    background-color: aquamarine; */
+  flex: 1 0 auto;
+  margin: 0 1rem;
+  background-color: aqua;
+}
+
+.swiper::-webkit-scrollbar {
+  background-color: transparent;
+}
