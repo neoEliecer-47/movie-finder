@@ -11,7 +11,7 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps({ params }) {//nos ayuda a generar paginas estaticas
   let description = "Jessy and Celine met each other in the summer of 1995...";
   let description2 = "Benjamin was born witn an strange desease that made him younger with the pass of years...";
   let movieDescription = "";
