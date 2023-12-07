@@ -1,6 +1,6 @@
 .container {
   overflow-x: hidden;
-  height: 10rem;
+  height: 60%;
 }
 
 .swiper {
@@ -8,7 +8,7 @@
   flex-wrap: nowrap;
   overflow: scroll;
   scroll-behavior: smooth;
-  scrollbar-color: transparent;
+  
 }
 
 .metaDataBar {
@@ -21,6 +21,21 @@
   flex: 1 0 auto;
   margin: 0 1rem;
   background-color: aqua;
+  cursor: pointer;
+  border: 0.5px ridge black;
+  padding: 0.8rem;
+}
+
+.content {
+  border: 2px solid red;
+}
+
+.plot{
+  margin-top: 0.5rem;
+}
+
+.metaDataBar:hover{
+  background-color: bisque;
 }
 
 .swiper::-webkit-scrollbar {
