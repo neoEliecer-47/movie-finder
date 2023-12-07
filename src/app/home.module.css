@@ -22,3 +22,15 @@
     display: flex;
     grid-gap: 0.5rem;
 }
+
+
+.movieContainer {
+    display: flex;
+    flex-direction: column;
+    grid-gap: 1rem;
+}
+
+.cardMovies {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
