@@ -1,0 +1,14 @@
+.pagButtonsContainer{
+    display: flex;
+    grid-gap: 0.5rem;
+    justify-content: center;
+    width: 100%;
+    margin: 1rem 0 0;
+  }
+
+  .pagButtons{
+    padding: 1 rem;
+    background-color: blueviolet;
+    width: 2.5rem;
+    border-radius: 0.4rem;
+  }

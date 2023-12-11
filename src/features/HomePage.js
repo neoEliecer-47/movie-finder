@@ -8,11 +8,14 @@ import pageData from "../mocks/movies.data.js";
 import Image from "next/image";
 import { useScreenDetector } from "@/hooks/useScreenDetector";
 import { useSearch } from "@/hooks/useSearch";
+import PaginationButtons from "@/components/PaginationButtons";
+import MovieCard from "@/components/MovieCard";
 
-export default function HomePage() {
-  const { isMobile } = useScreenDetector();
+export default function HomePage({ movies, randomInitialQuery }) {
+  //console.log(movies)
+
   const { errors, search, updateSearch } = useSearch();
-
+console.log(randomInitialQuery)
   function handleChange(e) {
     const newSearch = e.target.value;
     updateSearch(newSearch);
@@ -22,7 +25,7 @@ export default function HomePage() {
     e.preventDefault();
   }
 
-  console.log(pageData);
+  //console.log(pageData);
   return (
     <div className={styles.container}>
       <header className={styles.headerContainer}>
@@ -41,23 +44,7 @@ export default function HomePage() {
         <p style={{color: `${errors && "red"}`}}>{errors}</p>
       </header>
       <main className={styles.main}>
-        <div className={styles.cardMovies}>
-          {pageData.Search?.map((movie) => {
-            return (
-              <section key={movie.imdbID} className={styles.movieContainer}>
-                <Link href={`/movie/${movie.imdbID}`} passHref>
-                  <Image
-                    src={movie.Poster}
-                    quality={100}
-                    width={!isMobile ? 280 : 180}
-                    height={!isMobile ? 280 : 180}
-                  />
-                  <p>{movie.Title}</p>
-                </Link>
-              </section>
-            );
-          })}
-        </div>
+        <MovieCard initialMovies={movies} randomInitialQuery={randomInitialQuery}/>
       </main>
       <footer></footer>
     </div>

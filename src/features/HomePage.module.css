@@ -29,7 +29,3 @@
     grid-template-columns: 1fr 1fr;
   }
 
-  .cardMovies:hover{
-    width: 2rem;
-    height: 2rem;
-  }
