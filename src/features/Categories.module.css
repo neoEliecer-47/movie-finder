@@ -26,6 +26,9 @@ article {
   padding-inline: 1rem;
 }
 
+
+
+/*special effect*/
 .content {
   display: grid;
   grid-template-rows: 0fr;

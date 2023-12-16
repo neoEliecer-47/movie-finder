@@ -1,10 +1,12 @@
 .headerContainer {
-    height: 3rem;
-    margin: 1rem 0.5em 0 0.5em;
     
+    margin: 0 0 1em;
+    background-color: aquamarine;
     gap: 24px;
-    border: 3px solid black;
-  
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: end;
   }
   
   .form {
@@ -28,4 +30,23 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
   }
+
+
+  /* effect */
+  .content {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: 0.5s grid-template-rows ease-in-out;
+  }
+  
+  .showSearchInput {
+    grid-template-rows: 1fr;
+
+    
+  }
+  
+  .content > div {
+    overflow: hidden;
+  }
+  
 
