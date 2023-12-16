@@ -23,7 +23,7 @@ const MovieCard = ({ initialMovies, randomInitialQuery, paginationMovies }) => {
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
-      console.log(entry);
+      
       if (entry.isIntersecting) {
         entry.target.classList.add("show");
       } else {
@@ -38,6 +38,7 @@ const MovieCard = ({ initialMovies, randomInitialQuery, paginationMovies }) => {
     // hiddenElements.current.forEach((element) => observer.observe(element));
      elementos.forEach((el) => observer.observe(el))
      console.log(elementos)
+     //buscar la manera de agregar el defer en el HTML
    }, []);
 
   return (
