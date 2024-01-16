@@ -23,12 +23,12 @@ const MovieCard = ({ initialMovies, randomInitialQuery, paginationMovies }) => {
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
-      
-      if (entry.isIntersecting) {
-        entry.target.classList.add("show");
-      } else {
-        entry.target.classList.remove("show");
-      }
+      console.log(entry)
+       if (entry.isIntersecting) {
+         entry.target.classList.add("show");
+       } else {
+         entry.target.classList.remove("show");
+       }
     });
   });
 
@@ -36,8 +36,8 @@ const MovieCard = ({ initialMovies, randomInitialQuery, paginationMovies }) => {
 
    useEffect(() => {
     // hiddenElements.current.forEach((element) => observer.observe(element));
-     elementos.forEach((el) => observer.observe(el))
-     console.log(elementos)
+     elementos.forEach((el, index) => observer.observe(el[index].current))
+     //console.log(elementos.forEach((element, i) => console.log(element[1]?.current)))
      //buscar la manera de agregar el defer en el HTML
    }, []);
 
@@ -60,6 +60,7 @@ const MovieCard = ({ initialMovies, randomInitialQuery, paginationMovies }) => {
                   passHref
                 >
                   <Image
+                    className={styles.img}
                     src={movie.Poster}
                     quality={100}
                     width={!isMobile ? 280 : 160}
@@ -70,7 +71,7 @@ const MovieCard = ({ initialMovies, randomInitialQuery, paginationMovies }) => {
                     objectPosition="unset"
                     sizes="(max-width: 768px) 100vw"
                   />
-                  <p>{movie.Title}</p>
+                  <p className={styles.titleMovies}>{movie.Title}</p>
                 </Link>
               </section>
             </div>

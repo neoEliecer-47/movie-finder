@@ -1,4 +1,6 @@
 import HomePage from "@/features/HomePage";
+import Script from "next/script";
+import Head from "next/head";
 
 // export async function getStaticPaths(){
 //   return {
@@ -6,7 +8,7 @@ import HomePage from "@/features/HomePage";
 //     fallback: "blocking"
 //   }
 // }
-
+//
 // async function getInitialMovies() {
 //   const res = await fetch("https://www.omdbapi.com/?apikey=4287ad07&s=taxi", {
 //     method: "GET"
@@ -15,28 +17,55 @@ import HomePage from "@/features/HomePage";
 //   console.log(movies)
 //   return { props: { movies }, revalidate: 60 }
 // }
-
+//
 //INCFREMENTAL STATIC REGENERATION
-async function fetchMovies(){
-  const querys = ['bad','batman','spider man','driver','avengers','curious','curse','007','pokemon','naruto','dragon','dragon ball']
-  const randomMovies = querys[Math.floor(Math.random() * querys.length)]
-  const res = await fetch(`https://www.omdbapi.com/?apikey=4287ad07&s=${randomMovies}`, {
-    next: {
-      revalidate: 60//hacer un nuevo fetching cada 60 sec
+
+const querys = [
+  "bad",
+  "batman",
+  "spider man",
+  "driver",
+  "avengers",
+  "curious",
+  "curse",
+  "007",
+  "pokemon",
+  "naruto",
+  "dragon",
+  "dragon ball",
+];
+
+function getRandomString(){
+  return querys[Math.floor(Math.random() * querys.length)];
+}
+
+async function fetchMovies() {
+
+  const randomMovies = getRandomString()
+  const randomMoviesBanner = getRandomString()
+  const res = await fetch(
+    `https://www.omdbapi.com/?apikey=4287ad07&s=${randomMovies}`,
+    {
+      next: {
+        revalidate: 60, //hacer un nuevo fetching cada 60 sec
+      },
     }
-  })
-  const movies = await res.json()   
+  );
+  const movies = await res.json();
 
-  return { movies, randomMovies }
+  return { movies, randomMovies };
 }
 
-export default async function Home(){
-
-  const { movies, randomMovies } = await fetchMovies()
-  console.log(movies)
-  console.log(randomMovies)
+export default async function Home() {
+  const { movies, randomMovies } = await fetchMovies();
+  console.log(movies);
+  console.log(randomMovies);
   return (
-    <HomePage movies={movies} randomInitialQuery={randomMovies}/>
-  )
+    <div>
+    <Head>
+        <script defer></script>
+    </Head>
+      <HomePage movies={movies} randomInitialQuery={randomMovies} />
+    </div>
+  );
 }
-
