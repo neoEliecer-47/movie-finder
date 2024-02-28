@@ -12,6 +12,7 @@ import PaginationButtons from "@/components/PaginationButtons";
 import MovieCard from "@/components/MovieCard";
 import { RiSearch2Line } from "react-icons/ri";
 import classNames from "classnames";
+import CameraMovie from "../../public/images/CameraMovie";
 
 export default function HomePage({
   movies,
@@ -89,7 +90,7 @@ export default function HomePage({
       </header>
       <main className={styles.main}>
         <div style={{ marginBottom: "1rem" }}>
-          <h1>Movie Finder</h1>
+          <CameraMovie />
           <h3>
             The best place to find everything about you favorites movies and
             series

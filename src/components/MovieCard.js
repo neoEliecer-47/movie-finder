@@ -4,18 +4,23 @@ import Link from "next/link";
 import styles from "./MovieCard.module.css";
 import { useScreenDetector } from "@/hooks/useScreenDetector";
 import Image from "next/image";
-import React, { createRef, useCallback, useEffect, useRef, useState } from "react";
+import React, { createRef, useEffect, useRef, useState } from "react";
 
 const MovieCard = ({ initialMovies, randomInitialQuery, paginationMovies }) => {
   const { isMobile } = useScreenDetector();
   const [movies, setMovies] = useState([]);
   const [pageNumber, setpageNumber] = useState(2);
-  const [elements, setElements] = useState([])
+  const [elements, setElements] = useState([]);
   const hiddenElements = useRef([]);
   console.log(paginationMovies);
 
-  let elementos = []
-  elementos.push(hiddenElements.current = initialMovies?.Search?.map((_, index) => hiddenElements.current[index] ?? createRef())) 
+  let elementos = [];
+  elementos.push(
+    (hiddenElements.current = initialMovies?.Search?.map(
+      (_, index) => hiddenElements.current[index] ?? createRef()
+    ))
+  ); //this evaluate every hiddenElement to push them in an array, otherwise if it is undefined it creates a reference for that hiddemElement
+  console.log(elementos);
 
   function handlePageNumber() {
     setpageNumber(pageNumber + 1);
@@ -23,23 +28,21 @@ const MovieCard = ({ initialMovies, randomInitialQuery, paginationMovies }) => {
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
-      console.log(entry)
-       if (entry.isIntersecting) {
-         entry.target.classList.add("show");
-       } else {
-         entry.target.classList.remove("show");
-       }
+      console.log(entry);
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show");
+      } else {
+        entry.target.classList.remove("show");
+      }
     });
   });
 
-
-
-   useEffect(() => {
+  useEffect(() => {
     // hiddenElements.current.forEach((element) => observer.observe(element));
-     elementos.forEach((el, index) => observer.observe(el[index].current))
-     //console.log(elementos.forEach((element, i) => console.log(element[1]?.current)))
-     //buscar la manera de agregar el defer en el HTML
-   }, []);
+    //elementos.forEach((el, index) => observer?.observe(el[index].current));
+    //console.log(elementos.forEach((element, i) => console.log(element[1]?.current)))
+    //buscar la manera de agregar el defer en el HTML
+  }, []);
 
   return (
     <>
@@ -52,29 +55,20 @@ const MovieCard = ({ initialMovies, randomInitialQuery, paginationMovies }) => {
       <div className={styles.cardMovies}>
         {initialMovies?.Search?.map((movie, index) => {
           return (
-            <div className="hidden" ref={hiddenElements.current[index]}>
-              <section key={movie.imdbID} className={styles.movieContainer}>
-                <Link
-                 
-                  href={`/movie/${movie.imdbID}`}
-                  passHref
-                >
-                  <Image
-                    className={styles.img}
-                    src={movie.Poster}
-                    quality={100}
-                    width={!isMobile ? 280 : 160}
-                    height={!isMobile ? 280 : 160}
-                    layout="responsive"
-                    loading="eager"
-                    objectFit="contain"
-                    objectPosition="unset"
-                    sizes="(max-width: 768px) 100vw"
-                  />
-                  <p className={styles.titleMovies}>{movie.Title}</p>
-                </Link>
-              </section>
-            </div>
+            <section key={movie.imdbID} className={styles.movieContainer}>
+              <Link href={`/movie/${movie.imdbID}`} passHref rel="norferrer">
+                <Image
+                  className={styles.img}
+                  src={movie.Poster}
+                  quality={100}
+                  width={!isMobile ? 100 : 250}
+                  height={!isMobile ? 100 : 250}
+                  layout="responsive"
+                  objectFit="cover"
+                />
+                <p className={styles.titleMovies}>{movie.Title}</p>
+              </Link>
+            </section>
           );
         })}
 
