@@ -20,6 +20,7 @@ const MovieCard = ({
   const [queryMovies, setQueryMovies] = useState(false)
   const hiddenElements = useRef([]);
   
+  
 
   let elementos = [];
   elementos.push(

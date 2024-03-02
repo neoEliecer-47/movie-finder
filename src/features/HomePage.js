@@ -13,6 +13,7 @@ import MovieCard from "@/components/MovieCard";
 import { RiSearch2Line } from "react-icons/ri";
 import classNames from "classnames";
 import CameraMovie from "../../public/images/CameraMovie";
+import Modal from "@/components/mobile/Modal";
 import { fetchMoviesByQuery } from "@/services/movieQueries";
 
 export default function HomePage({
@@ -24,6 +25,8 @@ export default function HomePage({
   
   const { errors, search, updateSearch } = useSearch();
   const [openSearchBar, setOpenSearchBar] = useState(false);
+  const [modal, setModal] = useState(false)
+  
 
   const [currentQueryMovies, setCurrentQueryMovies] = useState([])
   //const { data } = await fetchMoviesByQuery(query)
@@ -47,6 +50,10 @@ export default function HomePage({
     
   }
 
+  function handleModal(){
+    setModal(!modal)
+  }
+
   //console.log(pageData);
   return (
     <div className={styles.container}>
@@ -66,6 +73,7 @@ export default function HomePage({
         <p style={{color: `${errors && "red"}`}}>{errors}</p>
       </header> */}
       <header className={styles.headerContainer}>
+        <button className={styles.modalContainer} onClick={handleModal}>modal</button>
         <RiSearch2Line
           style={{ height: "4rem", width: "4rem", cursor: "pointer" }}
           onClick={handleOpenSearchInput}
@@ -86,7 +94,7 @@ export default function HomePage({
               <input
                 type="text"
                 placeholder="search movie"
-                style={{ padding: "5px" }}
+                style={{ padding: "5px", width: '5rem'}}
                 value={search}
                 name="search"
                 onChange={handleChange}
@@ -97,6 +105,9 @@ export default function HomePage({
           </div>
         </div>
       </header>
+      <aside className={styles.modalContainer}>
+        <Modal modal={modal} setModal={setModal}/>
+      </aside>
       <main className={styles.main}>
         <div style={{ marginBottom: "1rem" }}>
           <CameraMovie />

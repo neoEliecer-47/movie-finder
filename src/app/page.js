@@ -59,6 +59,7 @@ async function fetchMovies() {
 export default async function Home() {
   const { movies, randomMovies } = await fetchMovies();
   
+ 
   return (
     <div>
     <Head>
