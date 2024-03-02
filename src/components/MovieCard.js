@@ -12,7 +12,7 @@ const MovieCard = ({ initialMovies, randomInitialQuery, paginationMovies }) => {
   const [pageNumber, setpageNumber] = useState(2);
   const [elements, setElements] = useState([]);
   const hiddenElements = useRef([]);
-  console.log(paginationMovies);
+  
 
   let elementos = [];
   elementos.push(
@@ -20,7 +20,7 @@ const MovieCard = ({ initialMovies, randomInitialQuery, paginationMovies }) => {
       (_, index) => hiddenElements.current[index] ?? createRef()
     ))
   ); //this evaluate every hiddenElement to push them in an array, otherwise if it is undefined it creates a reference for that hiddemElement
-  console.log(elementos);
+
 
   function handlePageNumber() {
     setpageNumber(pageNumber + 1);

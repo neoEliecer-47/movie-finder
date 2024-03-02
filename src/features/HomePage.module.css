@@ -73,5 +73,20 @@
   .content > div {
     overflow: hidden;
   }
+
+  .main{
+    position: relative;
+  }
+
+  .modalContainer{
+    margin: 0;
+    padding: 0;
+  }
+
+  @media screen and (min-width: 420px){
+    .modalContainer{
+      display: none;
+    }
+  }
   
 
