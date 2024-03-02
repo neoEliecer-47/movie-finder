@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styles from "./MovieDetails.module.css";
 import { IoPlayBackCircle } from "react-icons/io5";
 import { useRouter } from "next/router";
@@ -27,7 +27,6 @@ const MovieDetails = ({ movie }) => {
   const router = useRouter();
   console.log(film);
   const keys = Object.keys(movie).slice(0, 13);
-  
 
   function handleActiveTab(key, index) {
     setActiveTab(index);
@@ -45,9 +44,8 @@ const MovieDetails = ({ movie }) => {
       </section>
       <article className={styles.swiper}>
         {keys.map((key, index) => {
-          
           //if (key === "Year") index = index + 1
-          if (key === "Plot" || key === "Title") return
+          if (key === "Plot" || key === "Title") return;
           return (
             <div
               key={index}
