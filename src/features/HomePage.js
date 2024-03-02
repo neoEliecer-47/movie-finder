@@ -13,6 +13,7 @@ import MovieCard from "@/components/MovieCard";
 import { RiSearch2Line } from "react-icons/ri";
 import classNames from "classnames";
 import CameraMovie from "../../public/images/CameraMovie";
+import { fetchMoviesByQuery } from "@/services/movieQueries";
 
 export default function HomePage({
   movies,
@@ -20,22 +21,30 @@ export default function HomePage({
   paginationMovies,
 }) {
   //console.log(movies)
-
+  
   const { errors, search, updateSearch } = useSearch();
   const [openSearchBar, setOpenSearchBar] = useState(false);
-  console.log(randomInitialQuery);
+
+  const [currentQueryMovies, setCurrentQueryMovies] = useState([])
+  //const { data } = await fetchMoviesByQuery(query)
+
+
   function handleChange(e) {
     const newSearch = e.target.value;
     updateSearch(newSearch);
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
+    //console.log(search)
+    const { data } = await fetchMoviesByQuery(search)
+    setCurrentQueryMovies(data)
+
   }
 
   function handleOpenSearchInput() {
     setOpenSearchBar(!openSearchBar);
-    console.log(openSearchBar);
+    
   }
 
   //console.log(pageData);
@@ -79,7 +88,7 @@ export default function HomePage({
                 placeholder="search movie"
                 style={{ padding: "5px" }}
                 value={search}
-                name="query"
+                name="search"
                 onChange={handleChange}
               />
               <button style={{ padding: "5px" }}>search</button>
@@ -101,6 +110,8 @@ export default function HomePage({
           initialMovies={movies}
           randomInitialQuery={randomInitialQuery}
           paginationMovies={paginationMovies}
+          currentQueryMovies={currentQueryMovies}
+
         />
       </main>
       <footer></footer>
